@@ -11,22 +11,26 @@ def loadTasks():
     global taskTracker
     if os.path.exists(USER_DATA):
        with open(USER_DATA, "r") as jsonData:
-           taskTracker = json.load(jsonData)
+           taskTracker.update(json.load(jsonData))
     
 def saveTask(task):
     tasks.append(task)
     
 def saveDict(tasks):
-    time = datetime.datetime.today()
-    taskTracker.update({f"{time.strftime("%x")}: ": tasks})
+    today = datetime.datetime.today()
+    taskTracker.update({f"{today.strftime("%x")}: ": tasks})
+    
+    # if today in taskTracker:
+    #     taskTracker.update(tasks)
     
     with open(USER_DATA, "w") as jsonFile:
         json.dump(taskTracker, jsonFile, indent=4)
     
 def printTasks():
     i = 1
+    print("-------Tasks-------")
     for task in tasks:
-        print(i,'. ', task)
+        print(i,'.', task)
         i += 1
 
 
@@ -39,4 +43,5 @@ while True:
     saveDict(tasks)
     
 printTasks() # this prints the tasks
+
 print(taskTracker)
