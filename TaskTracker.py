@@ -20,6 +20,9 @@ def saveDict(tasks):
     time = datetime.datetime.today()
     taskTracker.update({f"{time.strftime("%x")}: ": tasks})
     
+    with open(USER_DATA, "w") as jsonFile:
+        json.dump(taskTracker, jsonFile, indent=4)
+    
 def printTasks():
     i = 1
     for task in tasks:
@@ -30,7 +33,7 @@ def printTasks():
 while True:
     userTask = input("Enter a task: ") 
     if userTask == 'q' or userTask == 'quit':
-        json.dumps(tasks)
+        json.dumps(taskTracker)
         break   
     saveTask(userTask)
     saveDict(tasks)
