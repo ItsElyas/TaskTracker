@@ -22,5 +22,5 @@ while True:
     time = datetime.datetime.today()
     taskTracker.update({f"{time.strftime("%x")}: ": tasks})
     
-printTasks()  
+printTasks() # this prints the task
 print(taskTracker)
