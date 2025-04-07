@@ -1,11 +1,21 @@
+import json
+import os
 import datetime
+
+USER_DATA = "UserData.json"
 
 tasks = []
 taskTracker = {}
 
+def loadTasks():
+    if os.path.exists(USER_DATA):
+        print("hello")
+    
 def saveTask(task):
     tasks.append(task)
     
+def saveDict(tasks):
+    taskTracker.update({f"{time.strftime("%x")}: ": tasks})
     
 def printTasks():
     i = 1
@@ -20,7 +30,7 @@ while True:
         break   
     saveTask(userTask)
     time = datetime.datetime.today()
-    taskTracker.update({f"{time.strftime("%x")}: ": tasks})
+    saveDict(tasks)
     
 printTasks() # this prints the tasks
 print(taskTracker)
