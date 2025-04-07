@@ -8,13 +8,16 @@ tasks = []
 taskTracker = {}
 
 def loadTasks():
+    global taskTracker
     if os.path.exists(USER_DATA):
-        print("hello")
+       with open(USER_DATA, "r") as jsonData:
+           taskTracker = json.load(jsonData)
     
 def saveTask(task):
     tasks.append(task)
     
 def saveDict(tasks):
+    time = datetime.datetime.today()
     taskTracker.update({f"{time.strftime("%x")}: ": tasks})
     
 def printTasks():
@@ -27,9 +30,9 @@ def printTasks():
 while True:
     userTask = input("Enter a task: ") 
     if userTask == 'q' or userTask == 'quit':
+        json.dumps(tasks)
         break   
     saveTask(userTask)
-    time = datetime.datetime.today()
     saveDict(tasks)
     
 printTasks() # this prints the tasks
