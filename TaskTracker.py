@@ -12,7 +12,6 @@ def loadTasks():
     if os.path.exists(USER_DATA):
        with open(USER_DATA, "r") as jsonData:
            taskTracker = json.loads(jsonData.read())
-           print(taskTracker)
     
 def saveTask(task):
     tasks.append(task)
