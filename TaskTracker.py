@@ -33,15 +33,29 @@ def printTasks():
     for task in tasks:
         print(i,'.', task)
         i += 1
-        
-loadTasks()
 
-while True:
-    userTask = input("Enter a task: ") 
-    if userTask == 'q' or userTask == 'quit':
-        json.dumps(taskTracker)
-        break   
-    saveTask(userTask)
-    saveDict(tasks)
+def printOptions():
+    print("Welcome User!")
+    print("1. Add Tasks")
+    print("2. View Tasks")
+    
+printOptions()    
+userInput = input()
+      
+loadTasks()
+match userInput:
+    
+    case '1':
+        while True:
+            userTask = input("Enter a task: ") 
+            if userTask == 'q' or userTask == 'quit':
+                json.dumps(taskTracker)
+                   
+            saveTask(userTask)
+            saveDict(tasks)
+    case '2':
+        printTasks()
+        
+        
     
 # printTasks() # this prints the tasks
