@@ -50,8 +50,7 @@ printOptions()
 userInput = input()
       
 loadTasks()
-printTasks()
-print(taskTracker)
+
 
 match userInput:
     
